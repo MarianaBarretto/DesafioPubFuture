@@ -1,11 +1,17 @@
 package DAO;
 
+
+
 import model.ModelReceitas;
 import util.ConexaoSQLite;
 import java.util.ArrayList;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Logger;
+import java.util.logging.Level;
+
 /**
 *
 * @author Mariana Barretto
@@ -15,9 +21,9 @@ public class DAOReceitas extends ConexaoSQLite {
     /**
     * grava Receitas
     * @param pModelReceitas
-    * @return int
+    * @return boolean
     */
-    public int salvarReceitasDAO(ModelReceitas pModelReceitas){
+    public boolean salvarReceitasDAO(ModelReceitas pModelReceitas){
         this.conectar();
         String sql = 
             "INSERT INTO tbl_receitas ("
@@ -27,8 +33,7 @@ public class DAOReceitas extends ConexaoSQLite {
                     + "descricao,"
                     + "conta,"
                     + "tipo_receita"
-                + ") VALUES (?,?,?,?,?,?);"
-            ;
+                + ") VALUES (?,?,?,?,?,?);";
         
         try (PreparedStatement preparedStatement = criarPreparedStatement(sql, Statement.RETURN_GENERATED_KEYS)){
             preparedStatement.setDouble(1, pModelReceitas.getValor());
@@ -37,18 +42,19 @@ public class DAOReceitas extends ConexaoSQLite {
             preparedStatement.setString(4, pModelReceitas.getDescricao());
             preparedStatement.setInt(5, pModelReceitas.getConta());
             preparedStatement.setString(6, pModelReceitas.getTipoReceita());
-            return preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
         }catch(Exception e){
             e.printStackTrace();
-            return 0;
+            return false;
         }finally{
             this.desconectar();
+            return true;
         }
 
     }
 /**
     * recupera Receitas
-    * @param pIdReceitas
+    * @param pModelReceitas
     * @return ModelReceitas
     */
     public ModelReceitas getReceitasDAO(int pIdReceitas){
@@ -61,7 +67,7 @@ public class DAOReceitas extends ConexaoSQLite {
                     + "data_recebimento_esperado,"
                     + "descricao,"
                     + "conta,"
-                    + "tipo_receita"
+                    + "tipo_Receita"
                  + " FROM"
                      + " tbl_receitas"
                  + " WHERE"
@@ -148,7 +154,6 @@ public class DAOReceitas extends ConexaoSQLite {
         this.conectar();
         String sql = 
             "UPDATE tbl_receitas SET "
-                    + "pk_id_receitas = ?,"
                     + "valor = ?,"
                     + "data_recebimento = ?,"
                     + "data_recebimento_esperado = ?,"
@@ -160,20 +165,20 @@ public class DAOReceitas extends ConexaoSQLite {
             ;
         
         try (PreparedStatement preparedStatement = criarPreparedStatement(sql)){
-            preparedStatement.setInt(1, pModelReceitas.getIdReceitas());
-            preparedStatement.setDouble(2, pModelReceitas.getValor());
-            preparedStatement.setString(3, pModelReceitas.getDataRecebimento());
-            preparedStatement.setString(4, pModelReceitas.getDataRecebimentoEsperado());
-            preparedStatement.setString(5, pModelReceitas.getDescricao());
-            preparedStatement.setInt(6, pModelReceitas.getConta());
-            preparedStatement.setString(7, pModelReceitas.getTipoReceita());
-            preparedStatement.setInt(8, pModelReceitas.getIdReceitas());
-            return preparedStatement.executeUpdate() > 0;
+            preparedStatement.setDouble(1, pModelReceitas.getValor());
+            preparedStatement.setString(2, pModelReceitas.getDataRecebimento());
+            preparedStatement.setString(3, pModelReceitas.getDataRecebimentoEsperado());
+            preparedStatement.setString(4, pModelReceitas.getDescricao());
+            preparedStatement.setInt(5, pModelReceitas.getConta());
+            preparedStatement.setString(6, pModelReceitas.getTipoReceita());
+            preparedStatement.setInt(7, pModelReceitas.getIdReceitas());
+            preparedStatement.executeUpdate();
         }catch(Exception e){
             e.printStackTrace();
             return false;
         }finally{
             this.desconectar();
+            return true;
         }
 
     }
@@ -199,7 +204,5 @@ public class DAOReceitas extends ConexaoSQLite {
         }finally{
             this.desconectar();
         }
-
     }
-
 }

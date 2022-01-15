@@ -28,6 +28,7 @@ public class ConexaoSQLite {
             System.out.println("Conectado");
 
         } catch (SQLException e) {
+            e.printStackTrace();
             System.err.println(e.getMessage());
             return false;
         }
@@ -41,9 +42,9 @@ public class ConexaoSQLite {
             if (this.conexao.isClosed() == false) {
                 this.conexao.close();
             }
-            System.out.println("desconectado");
+            System.out.println("Desconectado");
         } catch (SQLException e) {
-
+             e.printStackTrace();
             System.err.println(e.getMessage());
             return false;
         }
@@ -59,6 +60,7 @@ public class ConexaoSQLite {
         try {
             return this.conexao.createStatement();
         } catch (SQLException e) {
+            e.printStackTrace();
             return null;
         }
     }
@@ -92,6 +94,7 @@ public class ConexaoSQLite {
         try {
             return this.conexao.prepareStatement(sql);
         } catch (SQLException e) {
+            e.printStackTrace();
             return null;
         }
     }

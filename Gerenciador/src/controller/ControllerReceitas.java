@@ -15,9 +15,9 @@ public class ControllerReceitas {
     /**
     * grava Receitas
     * @param pModelReceitas
-    * @return int
+    * @return boolean
     */
-    public int salvarReceitasController(ModelReceitas pModelReceitas){
+    public boolean salvarReceitasController(ModelReceitas pModelReceitas){
         return this.daoReceitas.salvarReceitasDAO(pModelReceitas);
     }
 
@@ -57,3 +57,5 @@ public class ControllerReceitas {
         return this.daoReceitas.excluirReceitasDAO(pIdReceitas);
     }
 }
+
+

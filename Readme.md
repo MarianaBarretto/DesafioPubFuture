@@ -8,8 +8,7 @@ Criei um projeto estruturado com padrões de arquitetura MVC e uma interface gr�
 ## Pré-requisitos para rodar:
 <table>
  <tr> 
-  <td>Java</td>
-  <td>SQLite</td>
+  <td>SQLite Studio</td>
   <td>NetBeans</td>
  </tr>
 </table>

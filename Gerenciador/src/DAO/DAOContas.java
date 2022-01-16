@@ -21,18 +21,16 @@ public class DAOContas extends ConexaoSQLite {
         this.conectar();
         String sql = 
             "INSERT INTO tbl_contas ("
-                    + "pk_id_conta,"
                     + "saldo,"
                     + "tipo_conta,"
                     + "instituicao_financeira"
-                + ") VALUES (?,?,?,?);"
+                + ") VALUES (?,?,?);"
             ;
         
         try (PreparedStatement preparedStatement = criarPreparedStatement(sql, Statement.RETURN_GENERATED_KEYS)){
-            preparedStatement.setInt(1, pModelContas.getIdConta());
-            preparedStatement.setDouble(2, pModelContas.getSaldo());
-            preparedStatement.setString(3, pModelContas.getTipoConta());
-            preparedStatement.setInt(4, pModelContas.getInstituicaoFinanceira());
+            preparedStatement.setDouble(1, pModelContas.getSaldo());
+            preparedStatement.setString(2, pModelContas.getTipoConta());
+            preparedStatement.setInt(3, pModelContas.getInstituicaoFinanceira());
             preparedStatement.executeUpdate();
         }catch(Exception e){
             e.printStackTrace();

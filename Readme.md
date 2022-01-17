@@ -3,7 +3,7 @@
 ## Terceira etapa do processo seletivo da PubFuture: criar uma solução que auxilie no controle das finanças pessoais.
 
 ## Sobre: 
-Criei um projeto estruturado com padrões de arquitetura MVC e uma interface gráfica interativa, que gerencia o controle financeiro pessoal utilizando linguagem de programação Java e o banco de dados SQLite. No programa é possível cadastrar, excluir e editar contas, despesas e receitas. 
+Criei um projeto estruturado com padrões de arquitetura MVC e uma interface gráfica interativa, que gerencia o controle financeiro pessoal utilizando linguagem de programação Java e o banco de dados SQLite. No programa é possível administrar contas, despesas e receitas, realizando cadastros, exclusões e edições. 
 
 ## Pré-requisitos para rodar:
 <table>
@@ -17,7 +17,7 @@ Criei um projeto estruturado com padrões de arquitetura MVC e uma interface gr�
 ## Como rodar a solução:
    ### Banco de dados:
    1. Faça o download do arquivo ZIP do projeto
-   2. Abra o NetBeans clique em File > Import Project > From Zip > na opção Zipe File clique em Browse > va até a pasta que salvou o projeto selecione e clique em abrir.
+   2. Abra o NetBeans clique em File > Import Project > From Zip > na opção Zip File clique em Browse > va até a pasta que salvou o projeto selecione e clique em abrir.
    3. Execute o projeto na tela principal.
 
 ## Documentação: 
